@@ -26,8 +26,14 @@ extension UIView {
 
 let imageCache = NSCache<NSString, UIImage>()
 
-extension UIImageView {
+class CustomImageView: UIImageView {
+    
+    // 이미지 캐싱할때 load할 이미지의 url과 인터넷에서 받은 data의 url이 같은지 비교하여 같으면 저장함
+    // 이렇게 하는 이유는 dataTask가 비동기로 이루어지기 때문에 잘못 저장될 수도 있다.
+    var imageUrlString: String?
+    
     func loadImage(using urlString: String) {
+        imageUrlString = urlString
         let nsstring = NSString(string: urlString)
         let url = URL(string: urlString)!
         
@@ -48,7 +54,9 @@ extension UIImageView {
                 
                 let imageToCache = UIImage(data: data!)!
                 
-                imageCache.setObject(imageToCache, forKey: nsstring)
+                if self.imageUrlString == urlString {
+                    imageCache.setObject(imageToCache, forKey: nsstring)
+                }
                 
                 self.image = imageToCache
             }
