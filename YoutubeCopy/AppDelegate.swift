@@ -32,6 +32,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Called when a new scene session is being created.
         // Use this method to select a configuration to create the new scene with.
         return UISceneConfiguration(name: "Default Configuration", sessionRole: connectingSceneSession.role)
+        // Info.plist에서 Storyboard Name 속성을 삭제시켜주면 아래 로그가 뜨지 않는다.
+        // [Storyboard] Unknown class _TtC11YoutubeCopy14ViewController in Interface Builder file.
     }
 
     func application(_ application: UIApplication, didDiscardSceneSessions sceneSessions: Set<UISceneSession>) {
