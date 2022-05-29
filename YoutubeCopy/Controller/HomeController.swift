@@ -109,8 +109,11 @@ class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLa
         print(123)
     }
     
+    let settingsLauncher = SettingsLauncher()
+    
     @objc func handleMore() {
-        print(123)
+        // show menu
+        settingsLauncher.showSettings()
     }
     
     let menuBar: MenuBar = {
